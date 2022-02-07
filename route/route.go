@@ -2,6 +2,7 @@ package route
 
 import (
 	"github.com/gin-gonic/gin"
+	"login_register_demo/controller/mall"
 	"login_register_demo/controller/user"
 )
 
@@ -12,7 +13,17 @@ func Init_route() {
 		userOp.GET("/login", user.UserLoginG)
 		userOp.GET("/register", user.UserRegisterG)
 
-		userOp.GET("/classification", user.GetMallCategory)
 	}
+
+
+
+	shopOp := router.Group("/mall")
+	{
+		shopOp.GET("/classification", mall.GetMallCategory)
+	}
+
+
+
+
 	router.Run(":8080")
 }

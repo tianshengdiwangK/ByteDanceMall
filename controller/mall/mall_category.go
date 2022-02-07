@@ -1,4 +1,4 @@
-package user
+package mall
 
 import (
 	"github.com/gin-gonic/gin"
@@ -7,7 +7,7 @@ import (
 )
 
 // GetMallCategory
-// GET /user/classification
+// GET /mall/classification
 // 获取平台类目列表
 func GetMallCategory(c *gin.Context) {
 	var categories []string

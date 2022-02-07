@@ -14,7 +14,7 @@ const (
 	password = "root"
 	ip       = "localhost"
 	port     = "3306"
-	dbName   = "users"
+	dbName   = "newmall"
 )
 
 //var DB *sql.DB
