@@ -11,10 +11,10 @@ import (
 // 连接数据库参数
 const (
 	userName = "root"
-	password = "root"
-	ip       = "localhost"
+	password = "123456"
+	ip       = "110.42.132.130"
 	port     = "3306"
-	dbName   = "newmall"
+	dbName   = "mall"
 )
 
 //var DB *sql.DB
