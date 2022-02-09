@@ -12,13 +12,13 @@ func UserLoginG(c *gin.Context) {
 	userName := c.Request.URL.Query().Get("username")
 	passWord := c.Request.URL.Query().Get("password")
 	//查询列表
-	st2 := new(model.Users)
-	result, err := config.Engine.Where("username=?", userName).Get(st2)
+	st2 := new(model.User)
+	result, err := config.Engine.Where("user_username=?", userName).Get(st2)
 	fmt.Println("查询结果为", result)
 	if err != nil {
 		fmt.Println(err)
 	}
-	if userName != st2.Username {
+	if userName != st2.UserUsername {
 		// 无此用户
 		c.JSON(200, gin.H{
 			"success": false,
@@ -27,7 +27,7 @@ func UserLoginG(c *gin.Context) {
 		})
 	} else {
 		// 密码是否匹配
-		if passWord != st2.Password {
+		if passWord != st2.UserPassword {
 			c.JSON(200, gin.H{
 				"success": false,
 				"code":    400,
@@ -48,16 +48,16 @@ func UserRegisterG(c *gin.Context) {
 	userName := c.Request.URL.Query().Get("username")
 	passWord := c.Request.URL.Query().Get("password")
 	//查询列表
-	st2 := new(model.Users)
-	result, err := config.Engine.Where("username=?", userName).Get(st2)
+	st2 := new(model.User)
+	result, err := config.Engine.Where("user_username=?", userName).Get(st2)
 	fmt.Println("查询结果为", result)
 	if err != nil {
 		fmt.Println(err)
 	}
-	if userName != st2.Username {
+	if userName != st2.UserUsername{
 		// 无此用户
-		st2.Username = userName
-		st2.Password = passWord
+		st2.UserUsername = userName
+		st2.UserPassword = passWord
 		affected, err := config.Engine.Insert(st2)
 		if err != nil {
 			fmt.Println(err)
@@ -90,13 +90,13 @@ func ChangePasswordG(c *gin.Context) {
 	passWord := c.Request.URL.Query().Get("password")
 	newPassWord := c.Request.URL.Query().Get("newpassword")
 	//查询列表
-	st2 := new(model.Users)
+	st2 := new(model.User)
 	result, err := config.Engine.Where("username=?", userName).Get(st2)
 	fmt.Println("查询结果为", result)
 	if err != nil {
 		fmt.Println(err)
 	}
-	if userName != st2.Username {
+	if userName != st2.UserUsername {
 		// 无此用户
 		c.JSON(200, gin.H{
 			"success": false,
@@ -105,7 +105,7 @@ func ChangePasswordG(c *gin.Context) {
 		})
 	} else {
 		// 密码是否匹配
-		if passWord != st2.Password {
+		if passWord != st2.UserPassword{
 			fmt.Println("password error")
 			c.JSON(200, gin.H{
 				"success": false,
@@ -135,13 +135,13 @@ func DeleteUsernameG(c *gin.Context) {
 	userName := c.Request.URL.Query().Get("username")
 	passWord := c.Request.URL.Query().Get("password")
 	//查询列表
-	st2 := new(model.Users)
+	st2 := new(model.User)
 	result, err := config.Engine.Where("username=?", userName).Get(st2)
 	fmt.Println("查询结果为", result)
 	if err != nil {
 		fmt.Println(err)
 	}
-	if userName != st2.Username {
+	if userName != st2.UserUsername {
 		// 无此用户
 		c.JSON(200, gin.H{
 			"success": false,
@@ -150,7 +150,7 @@ func DeleteUsernameG(c *gin.Context) {
 		})
 	} else {
 		// 密码是否匹配
-		if passWord != st2.Password {
+		if passWord != st2.UserPassword {
 			fmt.Println("password error")
 			c.JSON(200, gin.H{
 				"success": false,
