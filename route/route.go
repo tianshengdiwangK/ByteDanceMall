@@ -6,9 +6,11 @@ import (
 	"login_register_demo/controller/cart"
 	"login_register_demo/controller/mall"
 	"login_register_demo/controller/user"
+	settings "login_register_demo/utils/setting"
 )
 
 func Init_route() {
+	gin.SetMode(settings.ServerSetting.RunMode)
 	router := gin.Default()
 	userOp := router.Group("/user")
 	{
@@ -17,12 +19,16 @@ func Init_route() {
 
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> wugang
 	shopOp := router.Group("/mall")
 	{
 		shopOp.GET("/classification", mall.GetMallCategory)
 	}
 
+<<<<<<< HEAD
 
 	cartOp := router.Group("/api/user/cart")
 	{
@@ -31,6 +37,7 @@ func Init_route() {
 
 
 
-
-	router.Run(":8080")
+=======
+	router.Run(settings.ServerSetting.HttpPort)
+>>>>>>> wugang
 }
