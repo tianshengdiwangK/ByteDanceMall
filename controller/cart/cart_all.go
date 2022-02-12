@@ -14,16 +14,16 @@ func GetCartAll(c *gin.Context) {
 	userid, ok := c.GetQuery("userid")
 	if !ok {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"msg " : "参数错误",
+			"msg ": "参数错误",
 		})
 	}
 
 	type queryRes struct {
-		model.Cart	`xorm:"extends"`
-		model.GoodsSku	`xorm:"extends"`
-		model.GoodsSpu	`xorm:"extends"`
-		model.Shop	`xorm:"extends"`
-		model.GoodsCategory	`xorm:"extends"`
+		model.Cart          `xorm:"extends"`
+		model.GoodsSku      `xorm:"extends"`
+		model.GoodsSpu      `xorm:"extends"`
+		model.Shop          `xorm:"extends"`
+		model.GoodsCategory `xorm:"extends"`
 	}
 
 	r := make([]queryRes, 0)
@@ -42,7 +42,6 @@ func GetCartAll(c *gin.Context) {
 		t := []string{val.Cart.Name, val.Cart.Price, val.GoodsCategory.CategoryName, strconv.Itoa(val.Cart.Count)}
 		jsonRes[val.Shop.ShopName] = append(jsonRes[val.Shop.ShopName], t)
 	}
-
 
 	c.JSON(http.StatusOK, jsonRes)
 }

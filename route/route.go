@@ -19,25 +19,17 @@ func Init_route() {
 
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> wugang
 	shopOp := router.Group("/mall")
 	{
 		shopOp.GET("/classification", mall.GetMallCategory)
 	}
 
-<<<<<<< HEAD
-
 	cartOp := router.Group("/api/user/cart")
 	{
 		cartOp.GET("/all", cart.GetCartAll)
+		cartOp.POST("/add", cart.CartAddProduct)
 	}
 
-
-
-=======
 	router.Run(settings.ServerSetting.HttpPort)
->>>>>>> wugang
+
 }

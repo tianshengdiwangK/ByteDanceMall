@@ -13,8 +13,12 @@ const (
 	ERROR_TOKEN_WRONG      = 1006
 	ERROR_TOKEN_TYPE_WRONG = 1007
 	ERROR_USER_NO_RIGHT    = 1008
-	//todo 其他模块错误开发时自行添加
+	// code = 4000... 购物车模块
 
+	//todo 其他模块错误开发时自行添加
+	//
+	ERROR_JSON_TYPE_WRONG = 9001
+	ERROR_DATABASE_WRONG  = 9002
 )
 
 var codeMsg = map[int]string{
@@ -28,6 +32,8 @@ var codeMsg = map[int]string{
 	ERROR_TOKEN_WRONG:      "TOKEN不正确,请重新登陆",
 	ERROR_TOKEN_TYPE_WRONG: "TOKEN格式错误,请重新登陆",
 	ERROR_USER_NO_RIGHT:    "该用户无权限",
+	ERROR_JSON_TYPE_WRONG:  "JSON格式错误",
+	ERROR_DATABASE_WRONG:   "数据库错误，请重试",
 }
 
 func GetErrMsg(code int) string {
