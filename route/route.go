@@ -6,18 +6,19 @@ import (
 	"login_register_demo/controller/cart"
 	"login_register_demo/controller/mall"
 	"login_register_demo/controller/user"
+	"login_register_demo/middleware"
 )
 
 func Init_route() {
 	router := gin.Default()
+	//验证器注册
+	router.Use(middleware.TokenMiddle())
 	userOp := router.Group("/user")
 	{
 		userOp.GET("/login", user.UserLoginG)
 		userOp.GET("/register", user.UserRegisterG)
 
 	}
-
-
 	shopOp := router.Group("/mall")
 	{
 		shopOp.GET("/classification", mall.GetMallCategory)
@@ -28,9 +29,6 @@ func Init_route() {
 	{
 		cartOp.GET("/all", cart.GetCartAll)
 	}
-
-
-
 
 	router.Run(":8080")
 }
