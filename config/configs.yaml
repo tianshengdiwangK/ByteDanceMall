@@ -1,0 +1,10 @@
+Server:
+  RunMode: debug #debug开发模式，release生产模式
+  HttpPort: :8080 #运行端口
+Database:
+  DBType: mysql
+  Username: root  # 数据库账号
+  Password: 123456  # 数据库密码
+  Host: 110.42.132.130
+  Port: 3306
+  DBName: mall
