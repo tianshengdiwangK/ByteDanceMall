@@ -15,8 +15,13 @@ import (
 //var DB *sql.DB
 var Engine *xorm.Engine
 
-//创建redis连接池
-var Pool *redis.Pool
+
+// 设置jwt的key
+var Jwtkey = "4ti7ng2y0u"
+=======
+
+
+
 
 // 连接数据库
 func InitDBXorm() {
