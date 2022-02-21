@@ -27,8 +27,8 @@ func SetToken(username string) (string,int) {
 		},
 	}
 
-	reqClaim := jwt.NewWithClaims(jwt.SigningMethodHS256,setClaim) //生成token
-	token,err := reqClaim.SignedString(JwtKey)                     //转换为字符串
+	reqClaim := jwt.NewWithClaims(jwt.SigningMethodHS256,setClaim)	//生成token
+	token,err := reqClaim.SignedString(JwtKey)	//转换为字符串
 	if err != nil {
 		return "",403
 	}
@@ -54,21 +54,21 @@ func JwtToken() gin.HandlerFunc {
 		fmt.Println("jwt中间件正常运行----------")
 		//非登录路劲进行token验证
 		if strings.Index(path, "login") < 0 {
-				//token := c.Request.Header.Get("token")
+			//token := c.Request.Header.Get("token")
 			token := c.Request.Header.Get("token")
-				fmt.Println("token为："+token)
-				if token == "" {
-					c.JSON(
-						http.StatusOK,
-						gin.H{
-							"success": false,
-							"code":    405,
-							"msg":     "无权访问",
-						},
-					)
-					c.Abort()
-					return
-				}
+			fmt.Println("token为："+token)
+			if token == "" {
+				c.JSON(
+					http.StatusOK,
+					gin.H{
+						"success": false,
+						"code":    405,
+						"msg":     "无权访问",
+					},
+				)
+				c.Abort()
+				return
+			}
 
 			key, tCode := CheckToken(token)
 
