@@ -1,4 +1,4 @@
-package models
+package model
 
 type GoodsCategory struct {
 	CategoryId   int    `xorm:"not null pk comment('种类id') INT(11)"`

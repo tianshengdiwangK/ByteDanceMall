@@ -4,10 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"login_register_demo/middleware"
 
-	"login_register_demo/controller/cart"
-	"login_register_demo/controller/mall"
 	"login_register_demo/controller/user"
-	"login_register_demo/middleware"
 	settings "login_register_demo/utils/setting"
 )
 
@@ -26,16 +23,16 @@ func Init_route() {
 
 	}
 
-	shopOp := router.Group("/mall")
-	{
-		shopOp.GET("/classification", mall.GetMallCategory)
-	}
+	//shopOp := router.Group("/mall")
+	//{
+	//	shopOp.GET("/classification", mall.GetMallCategory)
+	//}
 
-	cartOp := router.Group("/api/user/cart")
-	{
-		cartOp.GET("/all", cart.GetCartAll)
-		cartOp.POST("/add", cart.CartAddProduct)
-	}
+	//cartOp := router.Group("/api/user/cart")
+	//{
+	//	cartOp.GET("/all", cart.GetCartAll)
+	//	cartOp.POST("/add", cart.CartAddProduct)
+	//}
 
 	router.Run(settings.ServerSetting.HttpPort)
 

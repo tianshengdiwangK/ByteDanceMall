@@ -1,4 +1,4 @@
-package models
+package model
 
 type GoodsAttributeCategory struct {
 	Id                  int    `xorm:"not null INT(11)"`

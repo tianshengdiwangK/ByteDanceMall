@@ -1,4 +1,4 @@
-package models
+package model
 
 type GoodsSku struct {
 	Id int `xorm:"not null pk comment('主键

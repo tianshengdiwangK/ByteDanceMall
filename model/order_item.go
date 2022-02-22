@@ -1,4 +1,4 @@
-package models
+package model
 
 type OrderItem struct {
 	Id               int    `xorm:"not null pk comment('id值') INT(11)"`

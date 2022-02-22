@@ -1,4 +1,4 @@
-package models
+package model
 
 type GoodsBrand struct {
 	Id int `xorm:"not null pk comment('主键
