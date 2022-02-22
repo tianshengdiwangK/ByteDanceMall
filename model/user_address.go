@@ -1,4 +1,4 @@
-package model
+package models
 
 type UserAddress struct {
 	Id       int    `xorm:"not null pk comment('主键') INT(11)"`

@@ -1,4 +1,4 @@
-package model
+package models
 
 type Cart struct {
 	CartId int    `xorm:"not null pk comment('购物车 id') INT(11)"`
