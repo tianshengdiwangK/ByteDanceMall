@@ -1,8 +1,6 @@
-package model
+package models
 
-// MallCategory
-// 平台商品类目
 type MallCategory struct {
-	ID   int    `xorm:"'category_id'"`
-	Name string `xorm:"'category_name'"`
+	CategoryId   int    `xorm:"not null pk INT(11)"`
+	CategoryName string `xorm:"VARCHAR(255)"`
 }

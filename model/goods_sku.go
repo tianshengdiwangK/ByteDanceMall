@@ -1,10 +1,12 @@
-package model
+package models
 
 type GoodsSku struct {
-	Id int `xorm:"not null pk comment('主键') INT(11)"`
-	SpuId  int    `xorm:"not null comment('SPU的id') INT(11)"`
-	ShopId int    `xorm:"not null comment('店铺id') INT(11)"`
-	Price  string `xorm:"not null comment('售价') DECIMAL(10,2)"`
-	SkuNo  string `xorm:"not null comment('sku编号') VARCHAR(255)"`
-	Stock  int    `xorm:"not null comment('商品库存') INT(11)"`
+	Id int `xorm:"not null pk comment('主键
+') INT(11)"`
+	GoodsId int    `xorm:"comment('SPU的id') INT(11)"`
+	SkuCode string `xorm:"comment('店铺id') VARCHAR(84)"`
+	Price   string `xorm:"comment('售价') DECIMAL(10,2)"`
+	Stock   string `xorm:"comment('sku编号') VARCHAR(255)"`
+	Pic     string `xorm:"VARCHAR(255)"`
+	SpData  string `xorm:"VARCHAR(255)"`
 }
