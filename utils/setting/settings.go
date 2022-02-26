@@ -30,7 +30,7 @@ var (
 func Init_setting() error {
 	vp := viper.New()
 	viper.AutomaticEnv()
-	if viper.GetBool("IS_DEV") {
+	if viper.GetBool("IS_DEV") { // 应用开发环境配置文件，需要在IDE中设置环境变量IS_DEV=true
 		vp.SetConfigName("configs.dev")
 	} else {
 		vp.SetConfigName("configs")

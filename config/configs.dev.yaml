@@ -1,3 +1,4 @@
+# 应用开发环境配置文件，需要在IDE中设置环境变量IS_DEV=true
 Server:
   RunMode: debug #debug开发模式，release生产模式
   HttpPort: :8080 #运行端口
