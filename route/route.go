@@ -2,6 +2,7 @@ package route
 
 import (
 	"github.com/gin-gonic/gin"
+	"login_register_demo/controller/shopAdmin"
 	"login_register_demo/middleware"
 
 	"login_register_demo/controller/user"
@@ -15,12 +16,16 @@ func Init_route() {
 
 	router.Use(middleware.JwtToken())
 
-
 	userOp := router.Group("/user")
 	{
 		userOp.GET("/login", user.UserLoginG)
 		userOp.GET("/register", user.UserRegisterG)
 
+	}
+
+	shopAdminOp := router.Group("/shop/admin")
+	{
+		shopAdminOp.POST("/product/sku/add", shopAdmin.ProductAddSku)
 	}
 
 	//shopOp := router.Group("/mall")
