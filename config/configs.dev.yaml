@@ -9,4 +9,4 @@ Database:
   Port: 3306
   DBName: mall
 StaticResource:
-  ImagePath: ~/static/img # 图片资源在文件系统的路径，在该路径下，将图片按业务分文件夹存放
+  ImagePath: D:/static/img # 图片资源在文件系统的路径，在该路径下，将图片按业务分文件夹存放
