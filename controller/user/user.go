@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"login_register_demo/config"
+	"login_register_demo/middleware"
 	"login_register_demo/model"
 )
 
@@ -11,6 +12,7 @@ import (
 func UserLoginG(c *gin.Context) {
 	userName := c.Request.URL.Query().Get("username")
 	passWord := c.Request.URL.Query().Get("password")
+	group_id := c.Request.URL.Query().Get("group_id")
 	//查询列表
 	st2 := new(model.User)
 	result, err := config.Engine.Where("user_username=?", userName).Get(st2)
@@ -34,11 +36,25 @@ func UserLoginG(c *gin.Context) {
 				"msg":     "密码错误",
 			})
 		} else {
-			c.JSON(200, gin.H{
-				"success": true,
-				"code":    200,
-				"msg":     "登录成功",
-			})
+
+			// 为用户生成token
+			token,code:=middleware.SetToken(userName)
+			// 查询此用户是管理员还是普通用户，管理员为1,普通用户为2
+			token=group_id+token
+			if code!=200{
+				c.JSON(201, gin.H{
+					"success": true,
+					"code":    403,
+					"msg":     "token生成失败！",
+				})
+			}else{
+				c.JSON(200, gin.H{
+					"success": true,
+					"code":    200,
+					"msg":     "登录成功",
+					"token":   token,
+				})
+			}
 		}
 	}
 }
