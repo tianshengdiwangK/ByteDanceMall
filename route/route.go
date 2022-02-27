@@ -3,8 +3,6 @@ package route
 import (
 	"github.com/gin-gonic/gin"
 	"login_register_demo/controller/shopAdmin"
-	"login_register_demo/middleware"
-
 	"login_register_demo/controller/user"
 	settings "login_register_demo/utils/setting"
 )
@@ -14,12 +12,12 @@ func Init_route() {
 	router := gin.Default()
 	//验证器注册
 
-	router.Use(middleware.JwtToken())
+	//router.Use(middleware.JwtToken())
 
 	userOp := router.Group("/user")
 	{
-		userOp.GET("/login", user.UserLoginG)
-		userOp.GET("/register", user.UserRegisterG)
+		userOp.POST("/login", user.UserLoginT)
+		userOp.POST("/register", user.UserRegisterT)
 
 	}
 

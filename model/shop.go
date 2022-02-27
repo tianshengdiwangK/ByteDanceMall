@@ -5,9 +5,7 @@ import (
 )
 
 type Shop struct {
-	ShopId int `xorm:"not null pk comment('shop id
-
-') INT(11)"`
+	ShopId 			int `xorm:"not null pk comment('shop id') INT(11)"`
 	SellerId        int       `xorm:"not null comment('店铺所属卖家id') INT(11)"`
 	ShopDescription string    `xorm:"not null comment('店铺简介') VARCHAR(255)"`
 	ShopArea        string    `xorm:"not null comment('店铺所在地区。') VARCHAR(255)"`
