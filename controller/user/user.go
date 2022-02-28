@@ -11,6 +11,59 @@ import (
 	"time"
 )
 
+
+// @userLogin
+func UserLoginG(c *gin.Context) {
+	userName := c.Request.URL.Query().Get("username")
+	passWord := c.Request.URL.Query().Get("password")
+	group_id := c.Request.URL.Query().Get("group_id")
+	//查询列表
+	st2 := new(model.User)
+	result, err := config.Engine.Where("user_username=?", userName).Get(st2)
+	fmt.Println("查询结果为", result)
+	if err != nil {
+		fmt.Println(err)
+	}
+	if userName != st2.UserUsername {
+		// 无此用户
+		c.JSON(200, gin.H{
+			"success": false,
+			"code":    400,
+			"msg":     "无此用户",
+		})
+	} else {
+		// 密码是否匹配
+		if passWord != st2.UserPassword {
+			c.JSON(200, gin.H{
+				"success": false,
+				"code":    400,
+				"msg":     "密码错误",
+			})
+		} else {
+
+			// 为用户生成token
+			token,code:=middleware.SetToken(userName)
+			// 查询此用户是管理员还是普通用户，管理员为1,普通用户为2
+			token=group_id+token
+			if code!=200{
+				c.JSON(201, gin.H{
+					"success": true,
+					"code":    403,
+					"msg":     "token生成失败！",
+				})
+			}else{
+				c.JSON(200, gin.H{
+					"success": true,
+					"code":    200,
+					"msg":     "登录成功",
+					"token":   token,
+				})
+			}
+		}
+	}
+}
+
+
 // @userRegister
 func UserRegisterG(c *gin.Context) {
 	userName := c.Request.URL.Query().Get("username")

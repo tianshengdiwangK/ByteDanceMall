@@ -11,18 +11,38 @@ import (
 func Init_route() {
 	gin.SetMode(settings.ServerSetting.RunMode)
 	router := gin.Default()
+
+
 	//验证器注册
+	router.Use(middleware.JwtToken())
+	userOp := router.Group("/user")
+	{
+		userOp.GET("/login", user.UserLoginG)
+		userOp.GET("/register", user.UserRegisterG)
+
+	}
+
+	//验证器注册
+
 
 	//router.Use(middleware.JwtToken())
 
+
+	shopOp := router.Group("/mall",middleware.CheckAdminAuth())
+
 	userOp := router.Group("/user")
+
 	{
 		userOp.POST("/login", user.UserLoginT)
 		userOp.POST("/register", user.UserRegisterT)
 
 	}
 
+
+	cartOp := router.Group("/api/user/cart",middleware.CheckAdminAuth())
+
 	shopAdminOp := router.Group("/shop/admin")
+
 	{
 		shopAdminOp.POST("/product/image/add", shopAdmin.UploadProductImage)
 		shopAdminOp.POST("/product/add", shopAdmin.AddProduct)
