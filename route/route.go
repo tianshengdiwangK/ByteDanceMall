@@ -1,10 +1,11 @@
 package route
 
 import (
-	"github.com/gin-gonic/gin"
 	"login_register_demo/controller/shopAdmin"
 	"login_register_demo/controller/user"
 	settings "login_register_demo/utils/setting"
+
+	"github.com/gin-gonic/gin"
 )
 
 func Init_route() {
@@ -26,6 +27,7 @@ func Init_route() {
 		shopAdminOp.POST("/product/image/add", shopAdmin.UploadProductImage)
 		shopAdminOp.POST("/product/add", shopAdmin.AddProduct)
 		shopAdminOp.POST("/product/sku/add", shopAdmin.ProductAddSku)
+		shopAdminOp.GET("/attribute_category", shopAdmin.GetAttributeCategory)
 	}
 
 	//shopOp := router.Group("/mall")
