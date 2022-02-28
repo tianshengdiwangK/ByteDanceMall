@@ -27,8 +27,13 @@ func SetToken(username string) (string,int) {
 		},
 	}
 
+	reqClaim := jwt.NewWithClaims(jwt.SigningMethodHS256,setClaim) //生成token
+	token,err := reqClaim.SignedString(JwtKey)                     //转换为字符串
+
+
 	reqClaim := jwt.NewWithClaims(jwt.SigningMethodHS256,setClaim)	//生成token
 	token,err := reqClaim.SignedString(JwtKey)	//转换为字符串
+
 	if err != nil {
 		return "",403
 	}
@@ -40,6 +45,8 @@ func CheckToken(token string) (*MyClaims,int) {
 		return JwtKey,nil
 	})
 
+
+
 	if key,_ := setToken.Claims.(*MyClaims); setToken.Valid {
 		return key,200
 	}else {
@@ -48,12 +55,38 @@ func CheckToken(token string) (*MyClaims,int) {
 
 }
 //jwt中间件
+// 全局验证器
+
+
+}
+//jwt中间件
+
 func JwtToken() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		path := c.Request.URL.Path
 		fmt.Println("jwt中间件正常运行----------")
 		//非登录路劲进行token验证
 		if strings.Index(path, "login") < 0 {
+
+				//token := c.Request.Header.Get("token")
+			token := c.Request.Header.Get("token")
+			if token!=""{
+				token=token[1:]
+			}
+				fmt.Println("token为："+token)
+				if token == "" {
+					c.JSON(
+						http.StatusOK,
+						gin.H{
+							"success": false,
+							"code":    405,
+							"msg":     "无权访问",
+						},
+					)
+					c.Abort()
+					return
+				}
+=======
 			//token := c.Request.Header.Get("token")
 			token := c.Request.Header.Get("token")
 			fmt.Println("token为："+token)
@@ -69,6 +102,7 @@ func JwtToken() gin.HandlerFunc {
 				c.Abort()
 				return
 			}
+
 
 			key, tCode := CheckToken(token)
 
@@ -99,4 +133,27 @@ func JwtToken() gin.HandlerFunc {
 			c.Next()
 		}
 	}
+
+}
+//局部验证器 检验用户权限，普通用户无法访问admin后台
+func CheckAdminAuth() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		//fmt.Println("checkAdminAuth。。。。。。。。。。。。。。。。")
+		token := c.Request.Header.Get("token")
+		state:=token[0]-'0'
+		token=token[1:]
+		if state==2{
+			c.JSON(http.StatusOK,
+				gin.H{
+					"success": false,
+					"code":    405,
+					"msg":     "没有权限",
+				},
+			)
+			c.Abort()
+			return
+		}
+		c.Next()
+	}
+
 }
