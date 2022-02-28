@@ -2,6 +2,7 @@ package route
 
 import (
 	"github.com/gin-gonic/gin"
+	"login_register_demo/middleware"
 
 	"login_register_demo/controller/cart"
 	"login_register_demo/controller/mall"
@@ -10,6 +11,9 @@ import (
 
 func Init_route() {
 	router := gin.Default()
+
+	//验证器注册
+	router.Use(middleware.JwtToken())
 	userOp := router.Group("/user")
 	{
 		userOp.GET("/login", user.UserLoginG)
@@ -18,13 +22,13 @@ func Init_route() {
 	}
 
 
-	shopOp := router.Group("/mall")
+	shopOp := router.Group("/mall",middleware.CheckAdminAuth())
 	{
 		shopOp.GET("/classification", mall.GetMallCategory)
 	}
 
 
-	cartOp := router.Group("/api/user/cart")
+	cartOp := router.Group("/api/user/cart",middleware.CheckAdminAuth())
 	{
 		cartOp.GET("/all", cart.GetCartAll)
 	}
