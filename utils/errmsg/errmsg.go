@@ -23,6 +23,7 @@ const (
 	//
 	ERROR_JSON_TYPE_WRONG = 9001
 	ERROR_DATABASE_WRONG  = 9002
+	ERROR_UPLOAD_WRONG    = 9003
 )
 
 var codeMsg = map[int]string{
@@ -40,6 +41,7 @@ var codeMsg = map[int]string{
 	ERROR_PRICE_WRONG:       "金额格式错误",
 	ERROR_JSON_TYPE_WRONG:   "JSON格式错误",
 	ERROR_DATABASE_WRONG:    "数据库错误，请重试",
+	ERROR_UPLOAD_WRONG:      "文件上传错误，请重试",
 }
 
 func GetErrMsg(code int) string {
