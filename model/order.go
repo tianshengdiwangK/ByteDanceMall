@@ -5,7 +5,7 @@ import (
 )
 
 type Order struct {
-	OrderId int `xorm:"not null pk comment('订单id') INT(11)"`
+	Id      int `xorm:"not null pk comment('订单id\r\n') INT(11)"`
 	OrderNo int `xorm:"not null comment('如果对编号格式没什么要求，可使用雪花算法https://blog.csdn.net/u011499747/article/details/78254990来生成') INT(11)"`
 	UserId  int `xorm:"not null comment('订单所属客户id') INT(11)"`
 	ShopId          int       `xorm:"not null comment('订单所属店铺id') INT(11)"`
