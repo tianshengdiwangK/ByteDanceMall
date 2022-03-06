@@ -52,6 +52,7 @@ func Init_route() {
 		shopAdminOp.POST("/product/image/add", shopAdmin.UploadProductImage)
 		shopAdminOp.POST("/product/add", shopAdmin.AddProduct)
 		shopAdminOp.POST("/product/sku/add", shopAdmin.ProductAddSku)
+		shopAdminOp.GET("/product/list", shopAdmin.GetGoodsList)
 	}
 
 	//shopOp := router.Group("/mall")
