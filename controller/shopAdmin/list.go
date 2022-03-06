@@ -20,8 +20,15 @@ func GetGoodsList(c *gin.Context) {
 		})
 	}
 
-	res := make([]model.Goods, 0)
-	err := config.Engine.Table("goods").Where("shop_id = ?", shopId).Find(&res)
+	type queryRes struct {
+		model.Cart          `xorm:"extends"`
+		model.GoodsImage    `xorm:"extends"`
+	}
+
+	res := make([]queryRes, 0)
+	err := config.Engine.Table("goods").
+			Join("INNER", "goods_image", "goods.id = goods_image.goods_id").
+			Where("shop_id = ?", shopId).Find(&res)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"success": false,
