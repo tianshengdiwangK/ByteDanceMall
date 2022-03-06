@@ -9,4 +9,5 @@ type Goods struct {
 	Price           string `xorm:"comment('售价') VARCHAR(45)"`
 	Description     string `xorm:"comment('介绍') VARCHAR(45)"`
 	Stock           int    `xorm:"comment('库存') INT"`
+	ShopId       	int `xorm:"not null comment('店铺id') index INT(11)"`
 }
