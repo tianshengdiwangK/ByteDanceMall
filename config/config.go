@@ -20,11 +20,6 @@ var Jwtkey = "4ti7ng2y0u"
 
 
 
-// 设置jwt的key
-var Jwtkey = "4ti7ng2y0u"
-
-
-
 
 
 
