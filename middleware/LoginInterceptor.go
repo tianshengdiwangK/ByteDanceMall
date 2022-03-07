@@ -79,7 +79,7 @@ func JwtToken() gin.HandlerFunc {
 				return
 			}
 
-
+			token = token[1:]
 			key, tCode := CheckToken(token)
 
 			if tCode == 405{
