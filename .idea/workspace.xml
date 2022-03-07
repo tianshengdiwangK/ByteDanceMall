@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34efd343-bfd8-4fe6-aeda-473805bd221c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/controller/shopAdmin/goods_category_getList.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/configs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/configs.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/cart/cart_add_product.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/cart/cart_add_product.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/cart/cart_all.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/cart/cart_all.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/route/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/route/route.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/errmsg/errmsg.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/errmsg/errmsg.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
