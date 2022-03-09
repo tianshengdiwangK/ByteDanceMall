@@ -5,20 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34efd343-bfd8-4fe6-aeda-473805bd221c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/controller/shopAdmin/attribute_category.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/shopAdmin/category.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/controller/shopAdmin/order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/shopAdmin/attribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/shopAdmin/attribute.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/user/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/controller/user/user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/shopAdmin/brand_list_get.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middleware/LoginInterceptor.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/LoginInterceptor.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/goods_attribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/goods_attribute.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/goods_attribute_category.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/goods_attribute_category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/order.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/order.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user_address.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user_address.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/route/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/route/route.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/errmsg/errmsg.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/errmsg/errmsg.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

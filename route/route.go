@@ -24,10 +24,11 @@ func Init_route() {
 	shopAdminOp := router.Group("/shop/admin", middleware.CheckAdminAuth()) //商家后台操作，普通用户不可操作，需要权限认证是否为商家
 	{
 		//商品操作
-		shopAdminOp.GET("/category", shopAdmin.GetShopCategoryName)                //得到店铺中所有分类
-		shopAdminOp.POST("/category/icon/add", shopAdmin.UploadCategoryIcon)       //向店铺中插入分类图标
-		shopAdminOp.POST("/category/add", shopAdmin.InsertShopCategory)            //向店铺中插入分类
-		shopAdminOp.GET("/goods_category", shopAdmin.GetCategoryList)              //获取分类列表
+		shopAdminOp.GET("/category", shopAdmin.GetShopCategoryName)          //得到店铺中所有分类
+		shopAdminOp.POST("/category/icon/add", shopAdmin.UploadCategoryIcon) //向店铺中插入分类图标
+		shopAdminOp.POST("/category/add", shopAdmin.InsertShopCategory)      //向店铺中插入分类
+		shopAdminOp.GET("/goods_category", shopAdmin.GetCategoryList)        //获取分类列表
+		shopAdminOp.GET("/brand/list", shopAdmin.GetBrandList)
 		shopAdminOp.GET("/attribute_category", shopAdmin.GetAttributeCategory)     //得到店铺商品类型
 		shopAdminOp.GET("/product/list", shopAdmin.GetGoodsList)                   //得到店铺商品列表
 		shopAdminOp.POST("/product/image/add", shopAdmin.UploadProductImage)       //上传商品图片
