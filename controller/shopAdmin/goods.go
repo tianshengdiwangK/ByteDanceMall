@@ -124,6 +124,9 @@ func AddProduct(c *gin.Context) {
 	for index, img := range body.Imgs {
 		imgs[index].GoodsId = body.Info.Id
 		imgs[index].Image = img
+		if index == 0 {
+			imgs[index].IsPrimary = true
+		}
 	}
 	affected, err = config.Engine.Insert(&imgs)
 	log.Printf("插入%+v条img\n", affected)
