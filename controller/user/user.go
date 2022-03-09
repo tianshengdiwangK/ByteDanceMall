@@ -191,6 +191,7 @@ func UserRegisterT(c *gin.Context) {
 		})
 		return
 	}
+	fmt.Println(user)
 	stu := new(model.User)
 	//验证用户名是否已经存在，存在返回错误
 	result, err := config.Engine.Where("user_username=?", user.UserUsername).Get(stu)

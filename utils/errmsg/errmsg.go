@@ -18,7 +18,7 @@ const (
 	// code = 5000... 产品模块
 	ERROR_PRODUCT_NOT_EXIST = 5001
 	ERROR_PRICE_WRONG       = 5002
-
+	ERROR_ATTRIBUTE_CATEGORY_USED = 5003
 	//todo 其他模块错误开发时自行添加
 	//
 	ERROR_JSON_TYPE_WRONG = 9001
@@ -42,6 +42,7 @@ var codeMsg = map[int]string{
 	ERROR_JSON_TYPE_WRONG:   "JSON格式错误",
 	ERROR_DATABASE_WRONG:    "数据库错误，请重试",
 	ERROR_UPLOAD_WRONG:      "文件上传错误，请重试",
+	ERROR_ATTRIBUTE_CATEGORY_USED : "商品类型名称已经使用",
 }
 
 func GetErrMsg(code int) string {
