@@ -11,7 +11,6 @@ import (
 	"time"
 )
 
-
 // changePassword
 func ChangePasswordG(c *gin.Context) {
 	userName := c.Request.URL.Query().Get("username")
@@ -33,7 +32,7 @@ func ChangePasswordG(c *gin.Context) {
 		})
 	} else {
 		// 密码是否匹配
-		if passWord != st2.UserPassword{
+		if passWord != st2.UserPassword {
 			fmt.Println("password error")
 			c.JSON(200, gin.H{
 				"success": false,
@@ -103,7 +102,6 @@ func DeleteUsernameG(c *gin.Context) {
 	}
 }
 
-
 //Login Test
 func UserLoginT(c *gin.Context) {
 	var user model.User
@@ -153,16 +151,16 @@ func UserLoginT(c *gin.Context) {
 			})
 		} else {
 			// 为用户生成token
-			token,code:=middleware.SetToken(userName)
+			token, code := middleware.SetToken(userName, st2.UserId)
 			// 查询此用户是管理员还是普通用户，管理员为1,普通用户为2
-			token=group_id+token
-			if code!=200{
+			token = group_id + token
+			if code != 200 {
 				c.JSON(201, gin.H{
 					"success": true,
 					"code":    403,
 					"msg":     "token生成失败！",
 				})
-			}else{
+			} else {
 				c.JSON(200, gin.H{
 					"success": true,
 					"code":    200,
@@ -212,7 +210,7 @@ func UserRegisterT(c *gin.Context) {
 			"code":    code,
 			"msg":     errmsg.GetErrMsg(code),
 		})
-	} else{
+	} else {
 		user.CreateTime = time.Now()
 		affected, err := config.Engine.Insert(user)
 		if err != nil {
@@ -231,6 +229,5 @@ func UserRegisterT(c *gin.Context) {
 		}
 	}
 	//将用户信息插入到数据库表中
-
 
 }

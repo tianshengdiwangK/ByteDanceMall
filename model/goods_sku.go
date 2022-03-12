@@ -1,5 +1,7 @@
 package model
 
+import "strings"
+
 type GoodsSku struct {
 	Id      int    `xorm:"not null pk comment('主键') INT(11)"`
 	GoodsId int    `xorm:"not null comment('SPU的id') INT(11)" json:"goods_id"`
@@ -13,4 +15,14 @@ type GoodsSku struct {
 type Attr struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
+}
+
+// GetBriefAttr 返回销售属性的简短字符串
+//  eg. "白色 | 256GB"
+func (sku *GoodsSku) GetBriefAttr() string {
+	attrs := make([]string, len(sku.SpData))
+	for index, attr := range sku.SpData {
+		attrs[index] = attr.Value
+	}
+	return strings.Join(attrs, " | ")
 }

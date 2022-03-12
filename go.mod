@@ -46,4 +46,7 @@ require (
 	xorm.io/builder v0.3.6 // indirect
 )
 
-require github.com/kr/pretty v0.3.0 // indirect
+require (
+	github.com/kr/pretty v0.3.0 // indirect
+	github.com/shopspring/decimal v1.3.1 // indirect
+)

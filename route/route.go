@@ -1,6 +1,7 @@
 package route
 
 import (
+	"login_register_demo/controller/cart"
 	"login_register_demo/controller/shopAdmin"
 	"login_register_demo/controller/user"
 	"login_register_demo/middleware"
@@ -21,6 +22,14 @@ func Init_route() {
 	}
 
 	router.Use(middleware.JwtToken())
+
+	cartOp := router.Group("/cart")
+	{
+		cartOp.GET("/all", cart.GetCartAll)
+		cartOp.POST("/add", cart.CartAddProduct)
+		cartOp.POST("/sync", cart.CartEditProduct)
+	}
+
 	shopAdminOp := router.Group("/shop/admin", middleware.CheckAdminAuth()) //商家后台操作，普通用户不可操作，需要权限认证是否为商家
 	{
 		//商品操作
