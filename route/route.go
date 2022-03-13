@@ -19,6 +19,7 @@ func Init_route() {
 	{
 		userOp.POST("/login", user.UserLoginT)
 		userOp.POST("/register", user.UserRegisterT)
+
 	}
 
 	router.Use(middleware.JwtToken())
@@ -34,6 +35,7 @@ func Init_route() {
 	{
 		//商品操作
 		shopAdminOp.GET("/category", shopAdmin.GetShopCategoryName)          //得到店铺中所有分类
+		shopAdminOp.GET("/shopinfo", shopAdmin.GetShopInfo)                  //店铺信息展示
 		shopAdminOp.POST("/category/icon/add", shopAdmin.UploadCategoryIcon) //向店铺中插入分类图标
 		shopAdminOp.POST("/category/add", shopAdmin.InsertShopCategory)      //向店铺中插入分类
 		shopAdminOp.GET("/goods_category", shopAdmin.GetCategoryList)        //获取分类列表
