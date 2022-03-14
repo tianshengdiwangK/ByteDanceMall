@@ -2,23 +2,27 @@ package shopAdmin
 
 import (
 	"fmt"
-	mapset "github.com/deckarep/golang-set"
-	"github.com/gin-gonic/gin"
 	"log"
 	"login_register_demo/config"
 	"login_register_demo/model"
 	"login_register_demo/utils"
 	"login_register_demo/utils/errmsg"
+	"net/http"
+
+	mapset "github.com/deckarep/golang-set"
+	"github.com/gin-gonic/gin"
 )
+
 type receivedCategory struct {
-	Category_Name         string `json:"category_name"`
+	Category_Name        string `json:"category_name"`
 	Category_icon        string `json:"category_icon"`
 	Category_description string `json:"category_description"`
 	Category_show_status int    `json:"category_show_status"`
-	Parent_name string `json:"parent_name"`
-	Shop_id     int    `json:"shop_id"`
+	Parent_name          string `json:"parent_name"`
+	Shop_id              int    `json:"shop_id"`
 }
 type GoodsCategory model.GoodsCategory
+
 func GetShopCategoryName(c *gin.Context) {
 
 	var shopCategoryName []interface{}
@@ -41,6 +45,7 @@ func GetShopCategoryName(c *gin.Context) {
 	}
 
 }
+
 // UploadProductImage 上传商品图片接口
 //  POST /shop/admin/product/image/add multipart/form-data
 // 在添加商品前调用该接口上传商品图片，单次上传一张，返回图片路径
@@ -97,12 +102,12 @@ func InsertShopCategory(c *gin.Context) {
 
 	parentId := queryParentId(receive.Parent_name)
 	category := GoodsCategory{
-		CategoryName: receive.Category_Name,
+		CategoryName:        receive.Category_Name,
 		CategoryDescription: receive.Category_description,
-		CategoryIcon: receive.Category_icon,
-		CategoryShowStatus: receive.Category_show_status,
-		ShopId: receive.Shop_id,
-		ParentId: parentId,
+		CategoryIcon:        receive.Category_icon,
+		CategoryShowStatus:  receive.Category_show_status,
+		ShopId:              receive.Shop_id,
+		ParentId:            parentId,
 	}
 	affected, err := config.Engine.Insert(category)
 	if err != nil {
@@ -120,7 +125,7 @@ func InsertShopCategory(c *gin.Context) {
 	}
 }
 
-func queryParentId(parentName string) int  {
+func queryParentId(parentName string) int {
 	if parentName == "" {
 		return 0
 	} else {
@@ -132,4 +137,43 @@ func queryParentId(parentName string) int  {
 			return st2.CategoryId
 		}
 	}
+}
+
+func GetCategoryGoods(c *gin.Context) {
+	categoryId, ok := c.GetQuery("category_id")
+	if !ok {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"success": false,
+			"code":    http.StatusBadRequest,
+			"msg ":    "请求参数错误",
+		})
+	}
+
+	type goodsItem struct {
+		model.Goods      `xorm:"extends"`
+		model.GoodsImage `xorm:"extends"`
+	}
+	res := make([]goodsItem, 0)
+	config.Engine.Table("goods").
+		Join("INNER", "goods_image", "goods_image.goods_id = cart.product_id and goods_image.is_primary = 1").
+		Where("goods.goods_category_id = ?", categoryId).
+		Find(&res)
+
+	//封装结果
+	type queryRes struct {
+		productid   int    `json:"productid"`
+		productname string `json:"productname"`
+		productinfo string `json:"productinfo"`
+		price       string `json:"price"`
+		productimg  string `json:"productimg"`
+	}
+	r := make([]queryRes, len(res))
+	for i, val := range res {
+		r[i].productid = val.GoodsId
+		r[i].productname = val.Name
+		r[i].productinfo = val.Description
+		r[i].price = val.Price
+		r[i].productimg = val.Image
+	}
+	c.JSON(http.StatusOK, r)
 }
