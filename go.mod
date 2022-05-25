@@ -9,6 +9,7 @@ require (
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/go-xorm/xorm v0.7.9
 	github.com/google/uuid v1.3.0
+	github.com/shopspring/decimal v1.3.1
 	github.com/spf13/viper v1.10.1
 	xorm.io/core v0.7.3
 )
@@ -46,7 +47,4 @@ require (
 	xorm.io/builder v0.3.6 // indirect
 )
 
-require (
-	github.com/kr/pretty v0.3.0 // indirect
-	github.com/shopspring/decimal v1.3.1 // indirect
-)
+require github.com/kr/pretty v0.3.0 // indirect

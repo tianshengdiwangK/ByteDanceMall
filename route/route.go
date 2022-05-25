@@ -2,6 +2,7 @@ package route
 
 import (
 	"login_register_demo/controller/cart"
+	"login_register_demo/controller/mall"
 	"login_register_demo/controller/shopAdmin"
 	"login_register_demo/controller/user"
 	"login_register_demo/middleware"
@@ -21,7 +22,18 @@ func Init_route() {
 		userOp.POST("/register", user.UserRegisterT)
 	}
 
+	//商城主页相关的操作
+	mallOp := router.Group("/mall")
+	{
+		mallOp.GET("/product/product_detail", mall.GetProductInfo)
+		mallOp.GET("/category", mall.GetMallCategory)
+		mallOp.GET("/goods_category", mall.GetCategoryList)             //获取分类下所有的商品列表
+		mallOp.GET("/category/goods", mall.GetCategoryGoods)       //获取一个分类下所有的商品信息
+		mallOp.GET("/product/getcomment", mall.GetGoodsComment)
+	}
 	router.Use(middleware.JwtToken())
+
+
 
 	cartOp := router.Group("/cart")
 	{
@@ -35,10 +47,8 @@ func Init_route() {
 		//商品操作
 		shopAdminOp.GET("/category", shopAdmin.GetShopCategoryName)          //得到店铺中所有分类
 		shopAdminOp.GET("/shopinfo", shopAdmin.GetShopInfo)                  //店铺信息展示
-		shopAdminOp.GET("/category/goods", shopAdmin.GetCategoryGoods)       //获取一个分类下所有的商品信息
 		shopAdminOp.POST("/category/icon/add", shopAdmin.UploadCategoryIcon) //向店铺中插入分类图标
 		shopAdminOp.POST("/category/add", shopAdmin.InsertShopCategory)      //向店铺中插入分类
-		shopAdminOp.GET("/goods_category", shopAdmin.GetCategoryList)        //获取分类列表
 		shopAdminOp.GET("/brand/list", shopAdmin.GetBrandList)
 		shopAdminOp.GET("/attribute_category", shopAdmin.GetAttributeCategory)     //得到店铺商品类型
 		shopAdminOp.GET("/product/list", shopAdmin.GetGoodsList)                   //得到店铺商品列表

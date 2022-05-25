@@ -1,4 +1,4 @@
-package shopAdmin
+package mall
 
 import (
 	"github.com/gin-gonic/gin"

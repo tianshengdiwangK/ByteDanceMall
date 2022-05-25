@@ -34,6 +34,7 @@ func SaveImage(file *multipart.FileHeader, folder string) (f string, err error) 
 		return
 	}
 	// 4.返回图片相对路径
+	//服务器中nginx通过http://110.42.132.130/images/1.png可以访问到图片静态资源；静态资源应该放在服务器/home/resources/文件夹下。
 	f = path.Join("/img", folder, filename)
 	return
 }
